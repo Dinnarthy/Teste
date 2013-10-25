@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head>
+	<title>Cadastro de Usuario</title>
+</h:head>
+
+ 
+<h:body>
+	<h1>Cadastramento de Usuario</h1>
+	
+	<h:form id="cadastro">
+	<h:messages />
+	
+	<h:inputHidden value="#{usuarioBean.usuario.idUsuario}" />
+	<h:inputHidden value="#{usuarioBean.usuario.status}" />
+	<h:inputHidden value="#{usuarioBean.destino}" />
+	
+	<h:panelGrid>
+		<h:outputLabel value="Nome" for="nome" />
+		<h:inputText id="nome" label="Nome" value="#{usuarioBean.usuario.nome}" 
+		size="45" 	 maxlength="45" required="true" requiredMessage="Digite o seu nome !" validatorMessage="Seu nome
+		deve conter entre 7 e 45 caracteres.">
+			<f:validateLength  minimum="7" maximum="45"></f:validateLength>
+		</h:inputText>
+		
+		<h:outputLabel value="E-mail" for="email" />
+		<h:panelGroup>
+			<h:inputText id="email" label="E-mail" value="#{usuarioBean.usuario.email}" 
+			size="70" maxlength="70" required="true" validatorMessage="E-mail invalido !" requiredMessage="Por favor digite seu E-mail">
+				<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+			</h:inputText>
+		</h:panelGroup>
+		
+		<h:outputLabel value="Idioma" for="idioma" />
+		<h:selectOneMenu id="idioma" value="#{usuarioBean.usuario.idioma}">
+			<f:selectItem  itemValue="pt_BR" itemLabel="Portugues" />
+			<f:selectItem  itemValue="en_US" itemLabel="English" />
+			<f:selectItem  itemValue="es_ES" itemLabel="Espanol" />
+		
+		</h:selectOneMenu>
+		
+		
+		<h:outputLabel value="Senha" for="senha" />
+			<h:inputSecret id="senha" label="Senha" value="#{usuarioBean.usuario.senha}" 
+			size="15" maxlength="15" required="true" redisplay="true" requiredMessage="Por Favor digite sua senha" />
+			
+		<h:outputLabel value="Confirmar Senha" for="confSenha" />
+			<h:inputSecret id="confSenha" label="Confirmar Senha" value="#{usuarioBean.confirmarSenha}" 
+			size="15" maxlength="15" required="true" redisplay="true" requiredMessage="Por Favor digite sua
+			confirmação de senha" />
+			
+	</h:panelGrid>
+	
+	<h:commandButton value="Salvar" action="#{usuarioBean.salvar()}" />
+	
+	</h:form>
+
+</h:body>
+
+</html>

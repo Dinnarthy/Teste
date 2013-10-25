@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<h:body>
+	<h:form>
+		<h:messages />
+		<h:dataTable value="#{usuarioBean.lista}" var="usuario" rules="rows" cellpadding="5">
+			<f:facet name="caption">
+			
+			
+			
+			
+			</f:facet>
+			<f:facet name="header">Listagem de Usuarios Cadastrados</f:facet>
+			<f:facet name="footer">Final da Listagem</f:facet>
+			
+			<h:column>
+				<f:facet name="header">Identificação</f:facet>
+				#{usuario.idUsuario}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Estatus</f:facet>
+				<h:commandLink  action="#{usuarioBean.active}" >
+					<h:graphicImage library="img" name="estatus_#{usuario.status}.png" ></h:graphicImage>
+					<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}" />
+				</h:commandLink>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Lingua</f:facet>
+				<h:graphicImage library="img" name="#{usuario.idioma}.png" value="" ></h:graphicImage>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				#{usuario.nome}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">E-mail</f:facet>
+				#{usuario.email}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink  action="#{usuarioBean.edit}">
+					<h:graphicImage library="img" name="edit.png" style="border:0"></h:graphicImage>
+					<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}" />
+					<f:setPropertyActionListener target="#{usuarioBean.destino}" value="listagem" ></f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Deletar</f:facet>
+				<h:commandLink  action="#{usuarioBean.delete}">
+					<h:graphicImage library="img" name="del.png" style="border:0"></h:graphicImage>
+					<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}" />
+				</h:commandLink>
+			</h:column>
+		
+		
+		
+		
+		</h:dataTable>
+	
+	
+	
+	</h:form>
+
+</h:body>
+</html>
