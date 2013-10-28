@@ -18,7 +18,13 @@ public class UsuarioRN {
 	public Usuario getByEmail(String email){
 		return usuarioDAO.getByEmail(email);
 	}
-	
+	public Usuario getByNome(String nome){
+		return usuarioDAO.getByNome(nome);
+	}
+
+	public Usuario getBySenha(String senha){
+		return usuarioDAO.getBySenha(senha);
+	}
 	public void salvar(Usuario usuario){
 		Integer idUsuario = usuario.getIdUsuario();
 		if(idUsuario == 0 || idUsuario == null){

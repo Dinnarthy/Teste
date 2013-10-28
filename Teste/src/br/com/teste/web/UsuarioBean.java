@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import br.com.teste.usuario.Usuario;
 import br.com.teste.usuario.UsuarioRN;
@@ -19,6 +20,39 @@ public class UsuarioBean {
 	private String confirmarSenha;
 	private List<Usuario> lista;
 	private String destino;
+	private Usuario usuarioLogado;
+	
+	public UsuarioBean(){
+		usuarioLogado = new Usuario();
+	}
+	
+	public String login(){
+		String irPara = "login";
+		UsuarioRN usuarioRN = new UsuarioRN();
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		
+		Usuario usuarioNoBD	= usuarioRN.getByNome(usuarioLogado.getNome());
+		if(usuarioNoBD==null){
+			facesContext.addMessage("erro", new FacesMessage("Login não Autorizado! Usuario não Cadastrado."));
+			usuarioLogado = new Usuario();
+		}else if(!usuarioLogado.getSenha().equals(usuarioNoBD.getSenha())){
+			facesContext.addMessage("erro", new FacesMessage("Login não Autorizado! Senha Incorreta! "));
+			usuarioLogado = new Usuario();
+		}else{
+				HttpSession sessaoHttp = (HttpSession) facesContext.getExternalContext().getSession(true);
+				sessaoHttp.setAttribute("usuarioLogado", usuarioLogado);
+				irPara ="usuario";
+		}
+		
+		return irPara;
+	}
+	public String logout(){
+		//usuarioLogado = null;
+		HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);  
+	    sessao.invalidate();  
+	    return "login";
+	}
+	
 	
 	public String novo(){
 		destino = "usuarioCadastrado";
@@ -98,6 +132,15 @@ public class UsuarioBean {
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
+
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
+	
 	
 	
 	

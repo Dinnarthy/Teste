@@ -12,6 +12,12 @@ public interface UsuarioDAO {
 	
 	public Usuario getByEmail(String email);
 	
+	public Usuario getByNome(String nome);
+	
+	public Usuario getBySenha(String senha);
+	
 	public List<Usuario>listar();
+	
+	
 
 }

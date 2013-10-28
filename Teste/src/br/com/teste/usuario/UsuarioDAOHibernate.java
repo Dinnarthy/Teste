@@ -41,6 +41,18 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 		consulta.setString("param", email);
 		return (Usuario) consulta.uniqueResult();
 	}
+	public Usuario getByNome(String nome){
+		String hql = "SELECT u FROM Usuario u WHERE u.nome= :param";
+		Query consulta = session.createQuery(hql);
+		consulta.setString("param", nome);
+		return (Usuario) consulta.uniqueResult();
+	}
+	public Usuario getBySenha(String senha){
+		String hql = "SELECT u FROM Usuario u WHERE u.senha= :param";
+		Query consulta = session.createQuery(hql);
+		consulta.setString("param", senha);
+		return (Usuario) consulta.uniqueResult();
+	}
 
 	public List<Usuario> listar() {
 		return session.createCriteria(Usuario.class).list();
