@@ -1,11 +1,14 @@
 package br.com.teste.web;
 
+
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+
+
 import javax.servlet.http.HttpSession;
 
 import br.com.teste.usuario.Usuario;
@@ -27,7 +30,7 @@ public class UsuarioBean {
 	}
 	
 	public String login(){
-		String irPara = "login";
+		String irPara= "login";
 		UsuarioRN usuarioRN = new UsuarioRN();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		
@@ -41,18 +44,23 @@ public class UsuarioBean {
 		}else{
 				HttpSession sessaoHttp = (HttpSession) facesContext.getExternalContext().getSession(true);
 				sessaoHttp.setAttribute("usuarioLogado", usuarioLogado);
-				irPara ="usuario";
+				irPara ="teste";
 		}
 		
 		return irPara;
 	}
 	public String logout(){
-		//usuarioLogado = null;
-		HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);  
+		
+		
+		
+		usuarioLogado = null;
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession sessao = (HttpSession )
+				facesContext.getExternalContext().getSession(true); 
 	    sessao.invalidate();  
-	    return "login";
+	    return "login"; 
 	}
-	
+	 
 	
 	public String novo(){
 		destino = "usuarioCadastrado";
@@ -139,13 +147,6 @@ public class UsuarioBean {
 
 	public void setUsuarioLogado(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
-	}
-	
-	
-	
-	
-	
-	
-		
+	}	
 
 }

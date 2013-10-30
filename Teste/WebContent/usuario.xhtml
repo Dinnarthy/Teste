@@ -11,7 +11,7 @@
  
 <h:body>
 	<h1>Cadastramento de Usuario</h1>
-	
+	<h:commandButton value="Logout" action="#{usuarioBean.logout()}" />
 	<h:form id="cadastro">
 	<h:messages />
 	
@@ -57,7 +57,7 @@
 	
 	
 	<h:commandButton value="Salvar" action="#{usuarioBean.salvar()}" />
-	<h:commandLink value="Logout" action="#{usuarioBean.logout()}" />
+	
 	
 	</h:form>
 	

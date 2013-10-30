@@ -3,7 +3,8 @@
   <display-name>Teste</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-   
+    <welcome-file>login.jsf</welcome-file>
+
   </welcome-file-list>
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
@@ -14,23 +15,23 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
-  
+
    <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
+
   <filter>
-  	<filter-name>HibernateFilter</filter-name>
-  	<filter-class>br.com.teste.web.filter.HibernateSessionRequestFilter</filter-class>
+      <filter-name>HibernateFilter</filter-name>
+      <filter-class>br.com.teste.web.filter.HibernateSessionRequestFilter</filter-class>
   </filter>
-  
+
   <filter-mapping>
-  	<filter-name>HibernateFilter</filter-name>
-  	<url-pattern>*.jsf</url-pattern>
+      <filter-name>HibernateFilter</filter-name>
+      <url-pattern>*.jsf</url-pattern>
    </filter-mapping>
-   
+
    <!-- Filtro para identificar se o usuário está logado   -->
     <filter>  
         <filter-name>Login Filter</filter-name>  
@@ -40,5 +41,5 @@
         <filter-name>Login Filter</filter-name>  
         <url-pattern>*.jsf</url-pattern>  
     </filter-mapping> 
-  
+
 </web-app>

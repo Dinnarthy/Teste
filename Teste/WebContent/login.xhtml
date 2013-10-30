@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<h:body>
+<h:form id="login2">
+<h:messages />
+<h:panelGrid>
+<h:outputLabel value="Login" for="login" />
+<h:inputText id="nome" label="Login" value="#{usuarioBean.usuarioLogado.nome}" size="45" maxlength="45" required="true" requiredMessage="Digite seu Login"
+validatorMessage="Login deve conter entre 7 a 45 caracteres.">
+	<f:validateLength maximum="45" minimum="7"></f:validateLength>
+</h:inputText>
+
+<h:outputLabel value="Senha :" for="login" />
+	<h:inputSecret id="senha" label="Senha" value="#{usuarioBean.usuarioLogado.senha}" size="15" maxlength="15" required="true" redisplay="true" 
+	requiredMessage="Por favor digite sua senha!" />
+	
+</h:panelGrid>
+<h:commandButton value="Login" action="#{usuarioBean.login()}" />
+</h:form>
+
+</h:body>
+</html>
